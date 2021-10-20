@@ -19,7 +19,7 @@ namespace GrpcServer.Services
         public PhoneBookService(ILogger<PhoneBookService> logger, PhoneBookRepository repository)
         {
             this.logger = logger;
-            this.repository = repository;
+            this.repository = repository; 
         }
 
         public override Task<ContactModel> CreateNewContact(ContactModel request, ServerCallContext context)
