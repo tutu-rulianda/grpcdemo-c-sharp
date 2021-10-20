@@ -6,7 +6,7 @@ option csharp_namespace = "GrpcServer";
 Basic sample of Phone Book. It contains basic CRUD operations with simple request and response
 There is additional "Search" sample that responds with a stream of results.
 */
-service PhoneBook {
+service FaceProfiler {
 	rpc CreateNewContact (ContactModel) returns (ContactModel);
 	rpc AddPhoneNumber (AddPhoneNumberRequest) returns (ContactModel);
 	rpc SearchContacts (SearchRequest) returns (stream ContactModel);

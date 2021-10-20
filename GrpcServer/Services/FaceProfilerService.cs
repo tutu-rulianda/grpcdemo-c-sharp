@@ -11,12 +11,12 @@ namespace GrpcServer.Services
     /// <summary>
     /// Implementation of phone book RPC service
     /// </summary>
-    public class PhoneBookService : PhoneBook.PhoneBookBase 
+    public class FaceProfilerService : FaceProfiler.FaceProfilerBase 
     {
-        private readonly ILogger<PhoneBookService> logger;
-        private readonly PhoneBookRepository repository;
+        private readonly ILogger<FaceProfilerService> logger;
+        private readonly FaceProfilerRepository repository;
         
-        public PhoneBookService(ILogger<PhoneBookService> logger, PhoneBookRepository repository)
+        public FaceProfilerService(ILogger<FaceProfilerService> logger, FaceProfilerRepository repository)
         {
             this.logger = logger;
             this.repository = repository; 

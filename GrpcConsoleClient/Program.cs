@@ -10,23 +10,23 @@ namespace GrpcConsoleClient
         static async Task Main(string[] args)
         {
             // Get url to the gRPC server from the appsettings.json file
-            string phoneBookGrpcUrl = GetGrpcUrl();
+            string faceProfilerGrpcUrl = GetGrpcUrl();
 
             // If not found - exit from the application
-            if (phoneBookGrpcUrl == null)
+            if (faceProfilerGrpcUrl == null)
             {   
                 Environment.Exit(404);
             }
 
             // Init client implementations of gRPC
-            PhoneBookClient client = new PhoneBookClient(phoneBookGrpcUrl);
-            GreetClient greetClient = new GreetClient(phoneBookGrpcUrl);
-            BuddyGuyClient buddyGuyClient = new BuddyGuyClient(phoneBookGrpcUrl);
+            FaceProfilerClient client = new FaceProfilerClient(faceProfilerGrpcUrl);
+            GreetClient greetClient = new GreetClient(faceProfilerGrpcUrl);
+            BuddyGuyClient buddyGuyClient = new BuddyGuyClient(faceProfilerGrpcUrl);
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine($"Phonebook gRPC server will be contacted on: {phoneBookGrpcUrl}");
+                Console.WriteLine($"Phonebook gRPC server will be contacted on: {faceProfilerGrpcUrl}");
                 Console.WriteLine($"\r\nGreet received: {await greetClient.DoTheGreet("gRPC Developer")}");
                 Console.WriteLine("\r\nMake your choice");
                 Console.WriteLine("\t1. List all contacts");
@@ -86,7 +86,7 @@ namespace GrpcConsoleClient
 
         /// <summary>
         /// Used to get connection string from appsettings.json
-        /// Connection string should be located under the property named "PhoneBookGrpcServer" within "ConnectionStrings" section
+        /// Connection string should be located under the property named "FaceProfilerGrpcServer" within "ConnectionStrings" section
         /// </summary>
         /// <returns>connection string</returns>
         static string GetGrpcUrl()
@@ -99,12 +99,12 @@ namespace GrpcConsoleClient
 
             try
             {
-                return configuration.GetConnectionString("PhoneBookGrpcServer");
+                return configuration.GetConnectionString("FaceProfilerGrpcServer");
             }
             catch
             {
                 Console.WriteLine("Could not find GRPC url in the settings");
-                Console.WriteLine("Make sure you have property 'PhoneBookGrpcServer' under 'ConnectionStrings' section in appsettings.json");
+                Console.WriteLine("Make sure you have property 'FaceProfilerGrpcServer' under 'ConnectionStrings' section in appsettings.json");
                 Console.ReadLine();
                 return null;
             }

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace GrpcServer.Repositories
 {
-    public class PhoneBookRepository
+    public class FaceProfilerRepository
     {
-        private readonly ILogger<PhoneBookRepository> logger;
+        private readonly ILogger<FaceProfilerRepository> logger;
 
-        public PhoneBookRepository(ILogger<PhoneBookRepository> logger)
+        public FaceProfilerRepository(ILogger<FaceProfilerRepository> logger)
         {
             this.logger = logger;
             logger.LogInformation("Generating 20 random contacts");

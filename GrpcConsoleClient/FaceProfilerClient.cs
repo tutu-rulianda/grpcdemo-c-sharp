@@ -1,7 +1,7 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using Microsoft.Extensions.Configuration;
-using PhoneBookServer;
+using FaceProfilerServer;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,22 +11,22 @@ using System.Threading.Tasks;
 namespace GrpcConsoleClient
 {
     /// <summary>
-    /// Implementation of phonebook grpc client
+    /// Implementation of faceprofiler grpc client
     /// </summary>
-    public class PhoneBookClient
+    public class FaceProfilerClient
     {
         /// <summary>
         /// Init channel and client
         /// </summary>
         /// <param name="serverUrl"></param>
-        public PhoneBookClient(string serverUrl)
+        public FaceProfilerClient(string serverUrl)
         {
-            phoneBookChannel = GrpcChannel.ForAddress(serverUrl);
-            phoneBookClient = new PhoneBook.PhoneBookClient(phoneBookChannel);
+            faceProfilerChannel = GrpcChannel.ForAddress(serverUrl);
+            faceProfilerClient = new FaceProfiler.FaceProfilerClient(faceProfilerChannel);
         }
 
-        private GrpcChannel phoneBookChannel;
-        private PhoneBook.PhoneBookClient phoneBookClient;
+        private GrpcChannel faceProfilerChannel;
+        private FaceProfiler.FaceProfilerClient faceProfilerClient;
 
         /// <summary>
         /// Getting all contacts from rpc
@@ -38,7 +38,7 @@ namespace GrpcConsoleClient
             {
                 // Execute rpc
                 // Request is empty object so it is just created on the same line
-                ContactsResponse contacts = await phoneBookClient.GetAllContactsAsync(new GetAllRequest());
+                ContactsResponse contacts = await faceProfilerClient.GetAllContactsAsync(new GetAllRequest());
 
                 if (contacts != null && contacts.Contact != null && contacts.Contact.Count > 0)
                 {
@@ -73,7 +73,7 @@ namespace GrpcConsoleClient
             SearchRequest searchRequest = UIHelper.InputSearchParameters();
 
             // Prepare stream read
-            using (var search = phoneBookClient.SearchContacts(searchRequest))
+            using (var search = faceProfilerClient.SearchContacts(searchRequest))
             {
                 Console.WriteLine("Printing out stream of found contacts");
 
@@ -109,7 +109,7 @@ namespace GrpcConsoleClient
             {
                 try
                 {
-                    var response = await phoneBookClient.CreateNewContactAsync(newContact);
+                    var response = await faceProfilerClient.CreateNewContactAsync(newContact);
                     Console.WriteLine("New contact is successfuly saved to the server.");
                     Console.WriteLine("Below you can see new contact information with assigned IDs from the server:");
                     UIHelper.PrintContact(response);
@@ -131,7 +131,7 @@ namespace GrpcConsoleClient
             var request = UIHelper.UIAddNewPhoneNumber();
             try
             {
-                var response = await phoneBookClient.AddPhoneNumberAsync(request);
+                var response = await faceProfilerClient.AddPhoneNumberAsync(request);
                 Console.WriteLine("New contact is successfuly saved to the server.");
                 Console.WriteLine("Below you can see contact with new phone number");
                 UIHelper.PrintContact(response);
@@ -164,7 +164,7 @@ namespace GrpcConsoleClient
             try
             {
                 Console.WriteLine($"Looking up contact with ID={deleteRequest.ContactID} on the server");
-                ContactModel contact = await phoneBookClient.GetContactAsync(new GetContactRequest { ContactID = deleteRequest.ContactID });
+                ContactModel contact = await faceProfilerClient.GetContactAsync(new GetContactRequest { ContactID = deleteRequest.ContactID });
                 Console.WriteLine("Found contact:");
                 UIHelper.PrintContact(contact);
                 Console.Write("Are you sure you want to delete this contact? (Y/N): ");
@@ -174,7 +174,7 @@ namespace GrpcConsoleClient
                 {
                     try
                     {
-                        var response = await phoneBookClient.DeleteContactAsync(deleteRequest);
+                        var response = await faceProfilerClient.DeleteContactAsync(deleteRequest);
                         Console.WriteLine();
                         Console.WriteLine($"Server response: {response.Message}");
                     }
@@ -217,7 +217,7 @@ namespace GrpcConsoleClient
             try
             {
                 Console.WriteLine($"Looking up phone number with ID={deleteRequest.NumberID} on the server");
-                PhoneNumberModel phoneNumber = await phoneBookClient.GetPhoneNumberAsync(new GetPhoneNumberRequest { NumberID = deleteRequest.NumberID });
+                PhoneNumberModel phoneNumber = await faceProfilerClient.GetPhoneNumberAsync(new GetPhoneNumberRequest { NumberID = deleteRequest.NumberID });
                 Console.WriteLine("Found phone number:");
                 UIHelper.PrintPhoneNumberMultiline(phoneNumber);
                 Console.Write("Are you sure you want to delete this phone number? (Y/N): ");
@@ -227,7 +227,7 @@ namespace GrpcConsoleClient
                 {
                     try
                     {
-                        var response = await phoneBookClient.DeletePhoneNumberAsync(deleteRequest);
+                        var response = await faceProfilerClient.DeletePhoneNumberAsync(deleteRequest);
                         Console.WriteLine();
                         Console.WriteLine($"Number is deleted, this is contact details from the server: ");
                         UIHelper.PrintContact(response);
@@ -270,7 +270,7 @@ namespace GrpcConsoleClient
             try
             {
                 Console.WriteLine($"Looking up contact with ID={contactID} on the server");
-                ContactModel contact = await phoneBookClient.GetContactAsync(new GetContactRequest { ContactID = contactID });
+                ContactModel contact = await faceProfilerClient.GetContactAsync(new GetContactRequest { ContactID = contactID });
                 Console.WriteLine("Found contact:");
                 UIHelper.PrintContact(contact);
                 Console.Write("Are you sure you want to edit this contact? (Y/N): ");
@@ -283,7 +283,7 @@ namespace GrpcConsoleClient
 
                     try
                     {
-                        var response = await phoneBookClient.UpdateContactAsync(updateContact);
+                        var response = await faceProfilerClient.UpdateContactAsync(updateContact);
                         Console.WriteLine();
                         Console.WriteLine($"Updated contact: ");
                         UIHelper.PrintContact(response);
@@ -327,7 +327,7 @@ namespace GrpcConsoleClient
             try
             {
                 Console.WriteLine($"Looking up phone number with ID={numberID} on the server");
-                PhoneNumberModel phoneNumber = await phoneBookClient.GetPhoneNumberAsync(new GetPhoneNumberRequest { NumberID = numberID });
+                PhoneNumberModel phoneNumber = await faceProfilerClient.GetPhoneNumberAsync(new GetPhoneNumberRequest { NumberID = numberID });
                 Console.WriteLine("Found phone number:");
                 UIHelper.PrintPhoneNumberMultiline(phoneNumber);
                 Console.Write("Are you sure you want to delete this phone number? (Y/N): ");
@@ -339,7 +339,7 @@ namespace GrpcConsoleClient
                     {
                         var phoneNumberRequest = UIHelper.InputPhoneNumber();
                         phoneNumberRequest.NumberID = numberID;
-                        var response = await phoneBookClient.UpdatePhoneNumberAsync(phoneNumberRequest);
+                        var response = await faceProfilerClient.UpdatePhoneNumberAsync(phoneNumberRequest);
                         Console.WriteLine();
                         Console.WriteLine($"Number is updated, this is contact details from the server: ");
                         UIHelper.PrintContact(response);

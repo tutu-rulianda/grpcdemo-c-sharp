@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option csharp_namespace = "PhoneBookServer";
+option csharp_namespace = "FaceProfilerServer";
 
-service PhoneBook {
+service FaceProfiler {
 	rpc CreateNewContact (ContactModel) returns (ContactModel);
 	rpc AddPhoneNumber (AddPhoneNumberRequest) returns (ContactModel);
 	rpc SearchContacts (SearchRequest) returns (stream ContactModel);

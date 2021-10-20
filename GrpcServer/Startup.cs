@@ -20,7 +20,7 @@ namespace GrpcServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
-            services.AddSingleton<PhoneBookRepository>();
+            services.AddSingleton<FaceProfilerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +36,7 @@ namespace GrpcServer
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<GreeterService>();                
-                endpoints.MapGrpcService<PhoneBookService>();
+                endpoints.MapGrpcService<FaceProfilerService>();
                 endpoints.MapGrpcService<BuddyGuyService>();
 
                 endpoints.MapGet("/", async context =>
@@ -44,9 +44,9 @@ namespace GrpcServer
                     await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
                 });
 
-                endpoints.MapGet("/protos/phonebook.proto", async context =>
+                endpoints.MapGet("/protos/faceprofiler.proto", async context =>
                 {
-                    await context.Response.WriteAsync(System.IO.File.ReadAllText("Protos/phonebook.proto"));
+                    await context.Response.WriteAsync(System.IO.File.ReadAllText("Protos/faceprofiler.proto"));
                 });
 
                 endpoints.MapGet("/protos/greet.proto", async context =>

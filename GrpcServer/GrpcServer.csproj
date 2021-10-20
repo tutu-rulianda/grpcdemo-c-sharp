@@ -6,13 +6,13 @@
 
   <ItemGroup>
     <None Remove="Protos\buddyguy.proto" />
-    <None Remove="Protos\phonebook.proto" />
+    <None Remove="Protos\faceprofiler.proto" />
   </ItemGroup>
 
   <ItemGroup>
     <Protobuf Include="Protos\buddyguy.proto" GrpcServices="Server" />
     <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-    <Protobuf Include="Protos\phonebook.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\faceprofiler.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>
