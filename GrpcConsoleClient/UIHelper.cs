@@ -16,8 +16,8 @@ namespace GrpcConsoleClient
         public static SearchRequest InputSearchParameters()
         {
             SearchRequest searchRequest = new SearchRequest();
-            searchRequest.FirstName = StringInputSameLine("Enter part of the first name (Enter for empty)");
-            searchRequest.LastName = StringInputSameLine("Enter part of the last name (Enter for empty)");
+            searchRequest.TenantName = StringInputSameLine("Enter part of the first name (Enter for empty)");
+            searchRequest.UserName = StringInputSameLine("Enter part of the last name (Enter for empty)");
             return searchRequest;
         }
 
@@ -25,8 +25,8 @@ namespace GrpcConsoleClient
         {
             ContactModel newContact = new ContactModel();
 
-            newContact.FirstName = StringInputSameLine("First name");
-            newContact.LastName = StringInputSameLine("Last name");
+            newContact.TenantName = StringInputSameLine("First name");
+            newContact.UserName = StringInputSameLine("Last name");
             newContact.Country = StringInputSameLine("Country");
             newContact.City = StringInputSameLine("City");
             newContact.Zipcode = StringInputSameLine("Zipcode");
@@ -116,7 +116,7 @@ namespace GrpcConsoleClient
         public static void PrintContact(ContactModel contact)
         {
             Console.WriteLine($"Contact ID: {contact.ContactID}");
-            Console.WriteLine($"Name: {contact.FirstName} {contact.LastName}");
+            Console.WriteLine($"Name: {contact.TenantName} {contact.UserName}");
             Console.WriteLine($"Address: {contact.Country}, {contact.City}, {contact.Zipcode}, {contact.Address}");
             Console.WriteLine("Phone numbers: ");
             foreach (var phone in contact.PhoneNumbers)

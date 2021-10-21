@@ -21,8 +21,8 @@ service FaceProfiler {
 
 message ContactModel {
 	int32 contactID = 1;
-	string firstName = 2;
-	string lastName = 3;
+	string tenantName = 2;
+	string userName = 3;
 	string address = 4;
 	string zipcode = 5;
 	string city = 6;
@@ -45,8 +45,8 @@ message PhoneNumberModel {
 message GetAllRequest {}
 
 message SearchRequest {
-	string firstName = 1;
-	string lastName = 2;
+	string tenantName = 1;
+	string userName = 2;
 	string address = 3;
 	string zipcode = 4;
 	string city = 5;

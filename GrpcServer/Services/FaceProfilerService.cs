@@ -44,16 +44,16 @@ namespace GrpcServer.Services
             foreach (var contact in repository.Contacts)
             {
                 bool match = false;
-                if (request.FirstName.Length > 0)
+                if (request.TenantName.Length > 0)
                 {
-                    if (contact.FirstName.ToUpper().Contains(request.FirstName.ToUpper()))
+                    if (contact.TenantName.ToUpper().Contains(request.TenantName.ToUpper()))
                     {
                         match = true;
                     }
                 }
-                if (request.LastName.Length > 0)
+                if (request.UserName.Length > 0)
                 {
-                    if (contact.LastName.ToUpper().Contains(request.LastName.ToUpper()))
+                    if (contact.UserName.ToUpper().Contains(request.UserName.ToUpper()))
                     {
                         match = true;
                     }
@@ -90,8 +90,8 @@ namespace GrpcServer.Services
             {
                 throw new RpcException(new Status(StatusCode.NotFound, $"Contact with ID={request.ContactID} is not found."));
             }
-            updateContact.FirstName = request.FirstName;
-            updateContact.LastName = request.LastName;
+            updateContact.TenantName = request.TenantName;
+            updateContact.UserName = request.UserName;
             updateContact.Address = request.Address;
             updateContact.City = request.City;
             updateContact.Country = request.Country;

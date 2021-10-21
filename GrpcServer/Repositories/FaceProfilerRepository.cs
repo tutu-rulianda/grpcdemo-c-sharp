@@ -23,12 +23,12 @@ namespace GrpcServer.Repositories
         private readonly Random rnd = new Random();
 
         #region Random seeds
-        private List<string> FirstNamesSeed { get; } = new List<string>
+        private List<string> TenantNamesSeed { get; } = new List<string>
             {
                 "Kate", "Lara", "Lena", "Saskia", "Yasmin","Kathleen", "Mya", "Alexandra", "Connie", "Anthony", "Roman", "Adrian", "Zach", "Vincent", "Francis", "Bryan", "Sam", "Keaton", "Isaiah", "Victor"
             };
 
-        private List<string> LastNamesSeed { get; } = new List<string>
+        private List<string> UserNamesSeed { get; } = new List<string>
             {
                 "Roberts", "Hall", "Le", "Soto", "Murphy", "Pineda", "Haley", "Howe", "Molina", "Gilbert", "Johns", "Terry", "Lester", "Contreras", "Finley", "Douglas", "Reid", "Thornton", "McCann", "Valdez"
             };
@@ -170,8 +170,8 @@ namespace GrpcServer.Repositories
         {
             return new ContactModel()
             {
-                FirstName = this.FirstNamesSeed[rnd.Next(0, 20)],
-                LastName = this.LastNamesSeed[rnd.Next(0, 20)],
+                TenantName = this.TenantNamesSeed[rnd.Next(0, 20)],
+                UserName = this.UserNamesSeed[rnd.Next(0, 20)],
                 Address = $"{this.AddressesSeed[rnd.Next(0, 20)]} {rnd.Next(1, 100)}",
                 Zipcode = rnd.Next(10000, 100000).ToString(),
                 City = this.CitiesSeed[rnd.Next(0, 20)],
