@@ -121,6 +121,8 @@ namespace GrpcConsoleClient
             Console.WriteLine($"Name: {contact.TenantName} {contact.UserName}");
             Console.WriteLine($"Address: {contact.Country}, {contact.City}, {contact.Zipcode}, {contact.Address}");
             Console.WriteLine("Phone numbers: ");
+            Console.WriteLine($"Email: {contact.Email}");
+            Console.WriteLine($"Face Data: {contact.FaceData}");
             foreach (var phone in contact.PhoneNumbers)
             {
                 Console.Write("\t");

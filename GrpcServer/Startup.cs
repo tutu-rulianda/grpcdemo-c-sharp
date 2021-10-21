@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders.Physical;
 using Microsoft.Extensions.Hosting;
+using Grpc.AspNetCore.Server;
 
 namespace GrpcServer
 {
@@ -20,6 +21,7 @@ namespace GrpcServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+            services.AddGrpcReflection();
             services.AddSingleton<FaceProfilerRepository>();
         }
 
@@ -35,9 +37,16 @@ namespace GrpcServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();                
+                //endpoints.MapGrpcService<GreeterService>();
+
+                if (env.IsDevelopment())
+                {
+                    endpoints.MapGrpcReflectionService();
+                }
+
+
                 endpoints.MapGrpcService<FaceProfilerService>();
-                endpoints.MapGrpcService<BuddyGuyService>();
+                //endpoints.MapGrpcService<BuddyGuyService>();
 
                 endpoints.MapGet("/", async context =>
                 {
