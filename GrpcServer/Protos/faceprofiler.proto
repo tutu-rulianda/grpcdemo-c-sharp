@@ -28,6 +28,8 @@ message ContactModel {
 	string city = 6;
 	string country = 7;
 	repeated PhoneNumberModel phoneNumbers = 8;
+	string email = 9;
+	string faceData = 10;
 }
 
 enum PhoneType {
