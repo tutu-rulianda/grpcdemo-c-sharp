@@ -52,6 +52,8 @@ message SearchRequest {
 	string city = 5;
 	string country = 6;
 	string phoneNumber = 7;
+	string email = 8;
+	string faceData = 9;
 }
 
 message AddPhoneNumberRequest {
