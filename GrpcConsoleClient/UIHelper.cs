@@ -16,8 +16,8 @@ namespace GrpcConsoleClient
         public static SearchRequest InputSearchParameters()
         {
             SearchRequest searchRequest = new SearchRequest();
-            searchRequest.TenantName = StringInputSameLine("Enter part of the first name (Enter for empty)");
-            searchRequest.UserName = StringInputSameLine("Enter part of the last name (Enter for empty)");
+            searchRequest.TenantName = StringInputSameLine("Enter tenant name");
+            searchRequest.UserName = StringInputSameLine("Enter user name");
             return searchRequest;
         }
 
@@ -25,12 +25,14 @@ namespace GrpcConsoleClient
         {
             ContactModel newContact = new ContactModel();
 
-            newContact.TenantName = StringInputSameLine("First name");
-            newContact.UserName = StringInputSameLine("Last name");
+            newContact.TenantName = StringInputSameLine("Tenant name");
+            newContact.UserName = StringInputSameLine("User name");
             newContact.Country = StringInputSameLine("Country");
             newContact.City = StringInputSameLine("City");
             newContact.Zipcode = StringInputSameLine("Zipcode");
             newContact.Address = StringInputSameLine("Address");
+            newContact.Email = StringInputSameLine("Face Data");
+            newContact.FaceData = StringInputSameLine("Email");
 
             if (inputPhone)
             {

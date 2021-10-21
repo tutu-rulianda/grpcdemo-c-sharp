@@ -3,7 +3,7 @@ syntax = "proto3";
 option csharp_namespace = "GrpcServer";
 
 /*
-Basic sample of Phone Book. It contains basic CRUD operations with simple request and response
+Face profiler management. It contains basic CRUD operations with simple request and response
 There is additional "Search" sample that responds with a stream of results.
 */
 service FaceProfiler {
