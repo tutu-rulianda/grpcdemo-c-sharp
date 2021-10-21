@@ -43,9 +43,19 @@ namespace GrpcServer.Repositories
                 "Phurwoldgate", "Siormun With Leydamworth", "Malt Harbour", "Thampstreethbay", "St Sketel", "Tedulcaster", "Iogooncombe", "East Lakespockul", "Hotleek", "Lumbprai", "Niescoorte", "Saint Stroud", "Diecharl", "Park Noakslacrom", "Edgewelchester", "Port Lens", "West Cupa", "Red Xas", "New Thfrahope", "Grand Druth"
             };
 
-        private List<string> CountriesSeed { get; } = new List<string>
+        private List<string> tenantName { get; } = new List<string>
             {
                 "Siani", "Raqua Beibe", "Fasouthbiazam", "Frirungreecetire", "Eastern Mirymoaroclau"
+            };
+
+        private List<string> EmailsSeed { get; } = new List<string>
+            {
+                "bill@ms.com", "elon@tesla.com", "taufiq@grit.id", "irfan@grit.id", "angga@grit.id"
+            };
+
+        private List<string> FaceDatasSeed { get; } = new List<string>
+            {
+                "img1001.jpg", "img1002.jpg", "img1003.jpg", "img1004.jpg", "img1005.jpg"
             };
 
         #endregion
@@ -175,7 +185,9 @@ namespace GrpcServer.Repositories
                 Address = $"{this.AddressesSeed[rnd.Next(0, 20)]} {rnd.Next(1, 100)}",
                 Zipcode = rnd.Next(10000, 100000).ToString(),
                 City = this.CitiesSeed[rnd.Next(0, 20)],
-                Country = this.CountriesSeed[rnd.Next(0, 5)],
+                Country = this.tenantName[rnd.Next(0, 5)],
+                Email = this.EmailsSeed[rnd.Next(0, 5)],
+                FaceData = this.FaceDatasSeed[rnd.Next(0, 5)],
                 ContactID = id
             };
         }
