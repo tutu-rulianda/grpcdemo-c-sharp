@@ -96,6 +96,8 @@ namespace GrpcServer.Services
             updateContact.City = request.City;
             updateContact.Country = request.Country;
             updateContact.Zipcode = request.Zipcode;
+            updateContact.Email = request.Email;
+            updateContact.FaceData = request.FaceData;
 
             return Task.FromResult(updateContact);
         }
